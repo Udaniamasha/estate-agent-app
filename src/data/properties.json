@@ -60,7 +60,7 @@
       "url": "properties/prop4.html",
       "added": {
         "month": "November",
-        "day": 01,
+        "day": 1,
         "year": 2025
       }
     },
@@ -108,7 +108,7 @@
       "url": "properties/prop7.html",
       "added": {
         "month": "December",
-        "day": 05,
+        "day": 5,
         "year": 2024
       }
     }
