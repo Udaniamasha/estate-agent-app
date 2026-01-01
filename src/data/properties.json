@@ -9,6 +9,7 @@
       "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior.",
       "location": "Petts Wood Road, Petts Wood, Orpington BR5",
       "picture": "images/prop1pic1small.jpg",
+      "floorplan": "images/floorplan-prop1.jpg",
       "url": "properties/prop1.html",
       "added": {
         "month": "October",
@@ -41,6 +42,7 @@
       "description": "A stunning five-bedroom detached Victorian villa located in the heart of Camden. This property boasts high ceilings, original fireplaces, and a large landscaped garden. Spread over three floors, it features a spacious open-plan kitchen and dining area, a separate formal lounge, and a master suite with a walk-in wardrobe. Perfect for large families looking for luxury city living.",
       "location": "Regent's Park Road, London NW1",
       "picture": "images/prop3pic1small.jpg",
+      "floorplan": "images/floorplan-prop3.jpg",
       "url": "properties/prop3.html",
       "added": {
         "month": "June",
@@ -73,6 +75,7 @@
       "description": "Spacious four-bedroom terraced house offering great potential for modernisation. The property features two large reception rooms, a galley kitchen leading to a rear garden, and a cellar for storage. Upstairs, there are four well-proportioned bedrooms. Located in a quiet residential street near Bromley South station.",
       "location": "High Street, Bromley BR1",
       "picture": "images/prop5pic1small.jpg",
+      "floorplan": "images/floorplan-prop5.jpg",
       "url": "properties/prop5.html",
       "added": {
         "month": "February",
@@ -105,6 +108,7 @@
       "description": "Charming three-bedroom end-of-terrace house available at an excellent price. This property requires some cosmetic updating but offers solid bones and a generous corner plot garden. It includes a lounge, separate dining room, and a downstairs WC. A fantastic investment opportunity or project for a growing family.",
       "location": "Waddon New Road, Croydon CR0",
       "picture": "images/prop7pic1small.jpg",
+      "floorplan": "images/floorplan-prop1.jpg",
       "url": "properties/prop7.html",
       "added": {
         "month": "December",
