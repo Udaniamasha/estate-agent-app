@@ -1,18 +1,32 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import Select from 'react-select';
 import "react-datepicker/dist/react-datepicker.css";
 
 const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch, clearFilters }) => {
-  return (
+  // Options for React Select
+  const typeOptions = [
+    { value: 'any', label: 'Any' },
+    { value: 'House', label: 'House' },
+    { value: 'Flat', label: 'Flat' }
+  ];
+
+  // Handler for React Select
+  const handleTypeChange = (selectedOption) => {
+    // Mimic the event object so your parent component doesn't break
+    handleInputChange({ target: { name: 'type', value: selectedOption.value } });
+  };
+    return (
     <form onSubmit={handleSearch} className="search-form">
       <div className="search-grid">
         <label>
           Type:
-          <select name="type" value={filters.type} onChange={handleInputChange}>
-            <option value="any">Any</option>
-            <option value="House">House</option>
-            <option value="Flat">Flat</option>
-          </select>
+          <Select 
+            options={typeOptions}
+            value={typeOptions.find(op => op.value === filters.type)}
+            onChange={handleTypeChange}
+            className="react-select-container"
+            classNamePrefix="react-select"/>
         </label>
         <label>
           Min Price:
