@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SearchPage from '../components/SearchPage';
-import PropertyDetails from '../components/PropertyDetails';
+import SearchPage from './components/SearchPage';
+import PropertyDetails from './components/PropertyDetails';
 import './App.css'; // Keep your styles if you want them
 
 function App() {
