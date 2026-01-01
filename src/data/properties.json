@@ -1,0 +1,116 @@
+{
+  "properties": [
+    {
+      "id": "prop1",
+      "type": "House",
+      "bedrooms": 3,
+      "price": 750000,
+      "tenure": "Freehold",
+      "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior.",
+      "location": "Petts Wood Road, Petts Wood, Orpington BR5",
+      "picture": "images/prop1pic1small.jpg",
+      "url": "properties/prop1.html",
+      "added": {
+        "month": "October",
+        "day": 12,
+        "year": 2022
+      }
+    },
+    {
+      "id": "prop2",
+      "type": "Flat",
+      "bedrooms": 2,
+      "price": 399995,
+      "tenure": "Freehold",
+      "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room.",
+      "location": "Crofton Road Orpington BR6",
+      "picture": "images/prop2pic1small.jpg",
+      "url": "properties/prop2.html",
+      "added": {
+        "month": "September",
+        "day": 14,
+        "year": 2022
+      }
+    },
+    {
+      "id": "prop3",
+      "type": "House",
+      "bedrooms": 5,
+      "price": 950000,
+      "tenure": "Freehold",
+      "description": "A stunning five-bedroom detached Victorian villa located in the heart of Camden. This property boasts high ceilings, original fireplaces, and a large landscaped garden. Spread over three floors, it features a spacious open-plan kitchen and dining area, a separate formal lounge, and a master suite with a walk-in wardrobe. Perfect for large families looking for luxury city living.",
+      "location": "Regent's Park Road, London NW1",
+      "picture": "images/prop3pic1small.jpg",
+      "url": "properties/prop3.html",
+      "added": {
+        "month": "June",
+        "day": 15,
+        "year": 2025
+      }
+    },
+    {
+      "id": "prop4",
+      "type": "Flat",
+      "bedrooms": 1,
+      "price": 215000,
+      "tenure": "Leasehold",
+      "description": "An ideal starter home for a first-time buyer. This cozy one-bedroom apartment is situated on the second floor of a modern development. It features a bright living area with a Juliet balcony, a compact but fully equipped kitchenette, and a modern bathroom suite. Located close to King's College Hospital and local transport links.",
+      "location": "Camberwell New Road, London SE5",
+      "picture": "images/prop4pic1small.jpg",
+      "url": "properties/prop4.html",
+      "added": {
+        "month": "November",
+        "day": 01,
+        "year": 2025
+      }
+    },
+    {
+      "id": "prop5",
+      "type": "House",
+      "bedrooms": 4,
+      "price": 600000,
+      "tenure": "Freehold",
+      "description": "Spacious four-bedroom terraced house offering great potential for modernisation. The property features two large reception rooms, a galley kitchen leading to a rear garden, and a cellar for storage. Upstairs, there are four well-proportioned bedrooms. Located in a quiet residential street near Bromley South station.",
+      "location": "High Street, Bromley BR1",
+      "picture": "images/prop5pic1small.jpg",
+      "url": "properties/prop5.html",
+      "added": {
+        "month": "February",
+        "day": 20,
+        "year": 2025
+      }
+    },
+    {
+      "id": "prop6",
+      "type": "Flat",
+      "bedrooms": 2,
+      "price": 450000,
+      "tenure": "Leasehold",
+      "description": "A chic and contemporary two-bedroom apartment in a sought-after Chelsea location. Recently renovated to a high standard, it includes hardwood flooring, a state-of-the-art kitchen with granite countertops, and a luxurious bathroom with rainfall shower. The building offers a 24-hour concierge and underground parking.",
+      "location": "Chelsea Manor Street, London SW3",
+      "picture": "images/prop6pic1small.jpg",
+      "url": "properties/prop6.html",
+      "added": {
+        "month": "August",
+        "day": 10,
+        "year": 2025
+      }
+    },
+    {
+      "id": "prop7",
+      "type": "House",
+      "bedrooms": 3,
+      "price": 325000,
+      "tenure": "Freehold",
+      "description": "Charming three-bedroom end-of-terrace house available at an excellent price. This property requires some cosmetic updating but offers solid bones and a generous corner plot garden. It includes a lounge, separate dining room, and a downstairs WC. A fantastic investment opportunity or project for a growing family.",
+      "location": "Waddon New Road, Croydon CR0",
+      "picture": "images/prop7pic1small.jpg",
+      "url": "properties/prop7.html",
+      "added": {
+        "month": "December",
+        "day": 05,
+        "year": 2024
+      }
+    }
+  ]
+}
