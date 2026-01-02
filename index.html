@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Content Security Policy (CSP) -->
+<!-- Allows: Self (own files), Google Fonts, Google Maps, and inline styles (needed for React) -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self'; 
+  script-src 'self' 'unsafe-inline' 'unsafe-eval'; 
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+  font-src 'self' https://fonts.gstatic.com; 
+  img-src 'self' data: https://maps.google.com https://via.placeholder.com; 
+  frame-src 'self' https://www.google.com https://maps.google.com;
+">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Estate Agent App</title>
   </head>
   <body>
