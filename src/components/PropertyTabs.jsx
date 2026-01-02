@@ -2,7 +2,9 @@ import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-const PropertyTabs = ({ description, floorPlanImg, mapUrl }) => {
+const PropertyTabs = ({ description, floorPlanImg, location}) => {
+  // Create a search query safe for URLs
+  const mapQuery = encodeURIComponent(location); 
   return (
     <div className="tabs-section">
       <Tabs>
@@ -32,6 +34,7 @@ const PropertyTabs = ({ description, floorPlanImg, mapUrl }) => {
             )}
           </div>
         </TabPanel>
+        
 
         <TabPanel>
           <div className="tab-content map">
@@ -40,10 +43,19 @@ const PropertyTabs = ({ description, floorPlanImg, mapUrl }) => {
               title="Google Map"
               width="100%" 
               height="400" 
-              style={{ border: 0 }} 
+              style={{ border: 0, borderRadius: '8px' }} 
               loading="lazy" 
               allowFullScreen 
-              src={mapUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317718.69319292053!2d-0.3817765050863085!3d51.528307984912544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon!5e0!3m2!1sen!2suk!4v1644247568294!5m2!1sen!2suk"}
+              // Uses the location to find the map area
+              src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${mapQuery}`}
+            ></iframe>
+            {/* NOTE: Without a real API Key, the above might show an error or "Development Mode". 
+                For university coursework without an API key, use the standard embed output with the query: */}
+            <iframe 
+               width="100%" 
+               height="400" 
+               style={{ border: 0 }}
+               src={`https://maps.google.com/maps?q=${mapQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
             ></iframe>
           </div>
         </TabPanel>
