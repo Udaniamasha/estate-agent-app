@@ -5,15 +5,11 @@
 
 .hero-section {
   position: relative;
-  background-image: url('/images/hero-bg.jpg');
-   background-size: cover;
+  /* Use the unsplash link or your local file */
+  background-image: url('./images/hero-bg.jpg');
+  background-size: cover;
   background-position: center;
   min-height: 600px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 50px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +33,6 @@
   width: 100%;
   text-align: center;
   padding: 0 20px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,9 +78,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px 60px;
-
   display: flex;
-  gap: 30px;
+  gap: 40px;
   align-items: flex-start;
 }
 
@@ -115,10 +109,8 @@
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-
   display: flex;
   flex-direction: column;
-
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -150,19 +142,16 @@
   position: absolute;
   top: 10px;
   right: 10px;
-
   width: 35px;
   height: 35px;
   border: none;
   border-radius: 50%;
   background: #fff;
-
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
   cursor: pointer;
-
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   z-index: 10;
 }
@@ -177,12 +166,15 @@
   background: #fff;
   padding: 20px;
   border-radius: 8px;
-
   border: 1px solid #eee;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-
+  
+  /* Sticky Logic */
+  position: -webkit-sticky;
   position: sticky;
-  top: 100px;
+  top: 100px; 
+  z-index: 10;
+  height: fit-content; /* Critical for sticky to work */
 }
 
 /* Clear all button */
@@ -192,7 +184,6 @@
   border-radius: 4px;
   padding: 8px;
   margin-bottom: 15px;
-
   background: #e31c58;
   color: #fff;
   cursor: pointer;
@@ -259,5 +250,6 @@
   .favorites-sidebar {
     width: 100%;
     order: -1; /* move sidebar on top for mobile */
+    position: static;
   }
 }

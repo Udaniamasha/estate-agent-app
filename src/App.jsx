@@ -12,25 +12,37 @@ function App() {
   return (
     <FavoritesProvider>
       <Router>
-        {/* The Wrapper holds everything but allows full width */}
+        {/* Helper to reset scroll position on route change */}
         <ScrollToTop />
+        
         <div className="app-wrapper">
+          
+          {/* BRAND TOP BAR */}
           <div className="top-bar" style={{
-            backgroundColor: '#0f172a', color: 'white', textAlign: 'center', 
-            fontSize: '0.8rem', padding: '8px 0', letterSpacing: '1px', 
-            fontWeight: '500', textTransform: 'uppercase'
+            backgroundColor: 'var(--primary-color)', /* Uses your App.css theme color */
+            color: 'white', 
+            textAlign: 'center', 
+            fontSize: '0.8rem', 
+            padding: '8px 0', 
+            letterSpacing: '1px', 
+            fontWeight: '500', 
+            textTransform: 'uppercase'
           }}>
             Welcome to DreamEstate — The UK's No.1 Property Platform
           </div>
           
+          {/* 1. HEADER (Spans 100% width) */}
           <NavBar /> 
+          
+          {/* 2. MAIN CONTENT (Grows to fill space) */}
           <div className="main-content-area">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/property/:id" element={<PropertyDetails />} />
             </Routes>
           </div>
-          {/* 3. FOOTER (Will now span 100% width) */}
+          
+          {/* 3. FOOTER (Spans 100% width) */}
           <Footer />
           
         </div>
