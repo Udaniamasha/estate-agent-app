@@ -1,80 +1,185 @@
-/* 1. The Bar itself (Background) - Spans 100% */
+/* NAVBAR BASE */
 .navbar {
-  background: white;
-  width: 100%;        /* Force full width */
+  background: #ffffff;
+  width: 100%;
   height: 80px;
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* 2. The Content inside (Logo/Links) - Centered & Max Width */
+/* Slight transparency when scrolling */
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* NAVBAR CONTAINER */
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  max-width: 1200px; /* Limits content width so it looks organized */
-  margin: 0 auto;    /* Centers the content */
-  padding: 0 20px;   /* Prevents touching the edges on small screens */
+  max-width: 1200px; /* Matches Home Layout */
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
+/* LOGO STYLING */
 .navbar-logo {
-  color: #333;
-  font-weight: 700;
-  font-size: 1.5rem;
+  color: #262637; /* Brand Navy */
+  font-weight: 800;
+  font-size: 1.6rem;
   text-decoration: none;
+  letter-spacing: -0.5px;
+  transition: transform 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
+.navbar-logo:hover {
+  transform: scale(1.02);
+}
+
+/* MENU LINKS */
 .nav-menu {
   display: flex;
   gap: 30px;
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links {
   color: #555;
   text-decoration: none;
-  font-weight: 500;
-  padding: 8px 12px;
-  transition: color 0.2s;
+  font-weight: 600;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+  font-size: 0.95rem;
+}
+
+/* Modern underline hover animation */
+.nav-links::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 0%;
+  height: 2px;
+  background: #00d68f; /* Brand Green */
+  transition: width 0.3s ease;
+}
+
+.nav-links:hover::after {
+  width: 100%;
 }
 
 .nav-links:hover {
-  color: #0056b3;
+  color: #262637;
 }
 
+/* CALL-TO-ACTION BUTTON */
+.nav-button {
+  background: #00d68f; /* Brand Green */
+  color: #0b3d2c;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: none;
+}
+
+.nav-button:hover {
+  background: #00c080;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 214, 143, 0.3);
+}
+
+/* HAMBURGER MENU ICON (Fixed) */
 .menu-icon {
-  display: none; /* Hidden on desktop */
-  font-size: 1.8rem;
+  display: none;
+  width: 30px;
+  height: 24px;
+  position: relative;
   cursor: pointer;
+  z-index: 1100;
+  transition: transform 0.3s ease;
 }
 
-/* --- MOBILE RESPONSIVENESS --- */
+.menu-icon .bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #262637; /* Navy */
+  margin: 5px 0;
+  border-radius: 3px;
+  transition: all 0.4s ease;
+}
+
+.menu-icon:hover {
+  transform: scale(1.05);
+}
+
+/* Animate bars into "X" when open */
+.menu-icon.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.menu-icon.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-icon.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* MOBILE RESPONSIVENESS */
 @media screen and (max-width: 900px) {
   .menu-icon {
     display: block;
   }
 
   .nav-menu {
-    position: absolute;
+    position: fixed; /* Fixed prevents scrolling background */
     top: 80px;
-    left: -100%; /* Hidden off-screen */
+    left: -100%;
     width: 100%;
     height: calc(100vh - 80px);
-    background: white;
+    background: #ffffff;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 40px;
-    transition: left 0.3s ease;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    padding-top: 60px;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }
 
   .nav-menu.active {
-    left: 0; /* Slide in */
+    left: 0;
+  }
+
+  .nav-links {
+    font-size: 1.2rem;
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-button {
+    display: inline-block;
+    margin-top: 20px;
+    width: 80%;
+    text-align: center;
   }
 }
