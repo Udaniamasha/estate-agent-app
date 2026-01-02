@@ -1,0 +1,35 @@
+/* 1. The Footer Background - Spans 100% */
+.site-footer {
+  background-color: #262637;
+  color: #b2b2b2;
+  padding-top: 50px;
+  width: 100%; /* Force full width */
+  margin-top: auto;
+}
+
+/* 2. The Content Container - Centered */
+.footer-container {
+  max-width: 1200px; /* Matches NavBar width */
+  margin: 0 auto;    /* Centers it */
+  padding: 0 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+/* Headings & Links */
+.footer-col h3 { color: white; margin-top: 0; }
+.footer-col h4 { color: white; margin-bottom: 20px; }
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col a { color: #b2b2b2; text-decoration: none; transition: 0.2s; }
+.footer-col a:hover { color: white; }
+
+/* Bottom Bar */
+.footer-bottom {
+  background-color: #1e1e2d;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  border-top: 1px solid #333;
+}
