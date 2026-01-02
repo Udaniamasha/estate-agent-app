@@ -1,30 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SearchPage from './components/SearchPage';
-import PropertyDetails from './components/PropertyDetails';
-import './App.css'; // Keep your styles if you want them
+import Home from './pages/Home';
+import PropertyDetails from './pages/PropertyDetails';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import { FavoritesProvider } from './context/FavoritesContext';
+import './App.css'; 
 
 function App() {
   return (
-    <Router>
-      <div className="app-container">
-        {/* You can add a permanent Header/Navbar here later */}
-        <header style={{ padding: '1rem', backgroundColor: '#eee', marginBottom: '1rem' }}>
-          <h2>Estate Agent App</h2>
-        </header>
-
-        <main>
-          <Routes>
-            {/* Route for the Home/Search Page */}
-            <Route path="/" element={<SearchPage />} />
-            
-            {/* Route for individual Property Details */}
-            {/* :id is a variable parameter */}
-            <Route path="/property/:id" element={<PropertyDetails />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <FavoritesProvider>
+      <Router>
+        <div className="app-wrapper">
+          {/* Header spans full width */}
+          <NavBar /> 
+          
+          {/* Main grows to fill space, but doesn't restrict width yet */}
+          <main className="main-content-area">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/property/:id" element={<PropertyDetails />} />
+            </Routes>
+          </main>
+          
+          {/* Footer spans full width */}
+          <Footer />
+        </div>
+      </Router>
+    </FavoritesProvider>
   );
 }
 
