@@ -1,35 +1,54 @@
-
-/* GLOBAL RESETS */
+/* GLOBAL DESIGN SYSTEM */
 :root {
-  --primary-color: #0056b3;
-  --bg-color: #f4f7f6;
+  /* Brand Colors */
+  --primary-color: #262637; /* Dark Slate (Rightmove style) */
+  --accent-color: #00d68f;  /* Vibrant Green for CTA/Success */
+  --highlight-color: #e31c58; /* Pink/Red for Hearts/Important */
+  
+  /* Backgrounds */
+  --bg-color: #f8f9fa;      /* Very light gray for page background */
+  --surface-color: #ffffff; /* Pure white for cards/forms */
+  
+  /* Typography */
   --font-main: 'Poppins', sans-serif;
+  --text-dark: #2c3e50;
+  --text-medium: #6c757d;
+  
+  /* Spacing & Borders */
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12); /* Deep luxury shadow */
 }
 
+/* RESET */
 html, body, #root {
   margin: 0;
   padding: 0;
-  width: 100%;       /* Forces edge-to-edge */
-  max-width: 100%;   /* Removes any default limits */
+  width: 100%;
   height: 100%;
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-body {
-  font-family: var(--font-main);
-  background-color: var(--bg-color);
-}
-
-/* Wrapper forces footer to bottom */
 .app-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100%;
 }
 
-/* Main content area expands but doesn't restrict width yet */
 .main-content-area {
   flex: 1;
   width: 100%;
 }
+
+/* GLOBAL HEADINGS - Visual Hierarchy */
+h1 { font-weight: 700; color: var(--primary-color); letter-spacing: -0.5px; }
+h2 { font-weight: 600; color: var(--text-dark); }
+h3 { font-weight: 600; color: var(--text-dark); }
+
+/* GLOBAL BUTTONS */
+button { cursor: pointer; transition: all 0.2s ease; font-family: var(--font-main); }
