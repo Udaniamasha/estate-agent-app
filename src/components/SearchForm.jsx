@@ -40,18 +40,25 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
           Min Beds:
           <input type="number" name="minBedrooms" value={filters.minBedrooms} onChange={handleInputChange} />
         </label>
+        
         <label>
           Max Beds:
           <input type="number" name="maxBedrooms" value={filters.maxBedrooms} onChange={handleInputChange} />
         </label>
+
         <label>
           Postcode:
           <input type="text" name="postcode" value={filters.postcode} onChange={handleInputChange} placeholder="e.g. BR1" />
         </label>
+
         <label>
-          Added After:
-          <DatePicker selected={filters.dateAdded} onChange={handleDateChange} placeholderText="Select a date" className="date-picker" />
-        </label>
+          Added Before:
+          <DatePicker 
+          selected={filters.dateAddedMax} 
+          onChange={(date) => handleInputChange({ target: { name: 'dateAddedMax', value: date } })} 
+          placeholderText="Max Date" 
+          className="date-picker" />
+          </label>
       </div>
       
       <div className="form-actions">
