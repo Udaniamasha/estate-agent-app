@@ -16,7 +16,8 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
     // Mimic the event object so your parent component doesn't break
     handleInputChange({ target: { name: 'type', value: selectedOption.value } });
   };
-    return (
+
+  return (
     <form onSubmit={handleSearch} className="search-form">
       <div className="search-grid">
         <label>
@@ -26,16 +27,20 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
             value={typeOptions.find(op => op.value === filters.type)}
             onChange={handleTypeChange}
             className="react-select-container"
-            classNamePrefix="react-select"/>
+            classNamePrefix="react-select"
+          />
         </label>
+        
         <label>
           Min Price:
           <input type="number" name="minPrice" value={filters.minPrice} onChange={handleInputChange} />
         </label>
+        
         <label>
           Max Price:
           <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleInputChange} />
         </label>
+        
         <label>
           Min Beds:
           <input type="number" name="minBedrooms" value={filters.minBedrooms} onChange={handleInputChange} />
@@ -51,14 +56,26 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
           <input type="text" name="postcode" value={filters.postcode} onChange={handleInputChange} placeholder="e.g. BR1" />
         </label>
 
+        {/* --- ADDED THIS MISSING FIELD --- */}
+        <label>
+          Added After:
+          <DatePicker 
+            selected={filters.dateAdded} 
+            onChange={handleDateChange} 
+            placeholderText="Start Date" 
+            className="date-picker" 
+          />
+        </label>
+
         <label>
           Added Before:
           <DatePicker 
-          selected={filters.dateAddedMax} 
-          onChange={(date) => handleInputChange({ target: { name: 'dateAddedMax', value: date } })} 
-          placeholderText="Max Date" 
-          className="date-picker" />
-          </label>
+            selected={filters.dateAddedMax} 
+            onChange={(date) => handleInputChange({ target: { name: 'dateAddedMax', value: date } })} 
+            placeholderText="End Date" 
+            className="date-picker" 
+          />
+        </label>
       </div>
       
       <div className="form-actions">

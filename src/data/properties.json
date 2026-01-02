@@ -10,12 +10,15 @@
       "location": "Petts Wood Road, Petts Wood, Orpington BR5",
       "picture": "images/prop1pic1small.jpg",
       "floorplan": "images/floorplan-prop1.jpg",
-      "url": "properties/prop1.html",
-      "added": {
-        "month": "October",
-        "day": 12,
-        "year": 2022
-      }
+      "images": [
+        "images/prop1_1.jpg",
+        "images/prop1_2.jpg",
+        "images/prop1_3.jpg",
+        "images/prop1_4.jpg",
+        "images/prop1_5.jpg",
+        "images/prop1_6.jpg"
+      ],
+      "added": { "month": "October", "day": 12, "year": 2022 }
     },
     {
       "id": "prop2",
@@ -26,12 +29,16 @@
       "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room.",
       "location": "Crofton Road Orpington BR6",
       "picture": "images/prop2pic1small.jpg",
-      "url": "properties/prop2.html",
-      "added": {
-        "month": "September",
-        "day": 14,
-        "year": 2022
-      }
+      "floorplan": "images/floorplan-prop2.jpg",
+      "images": [
+        "images/prop2_1.jpg",
+        "images/prop2_2.jpg",
+        "images/prop2_3.jpg",
+        "images/prop2_4.jpg",
+        "images/prop2_5.jpg",
+        "images/prop2_6.jpg"
+      ],
+      "added": { "month": "September", "day": 14, "year": 2022 }
     },
     {
       "id": "prop3",
@@ -43,12 +50,15 @@
       "location": "Regent's Park Road, London NW1",
       "picture": "images/prop3pic1small.jpg",
       "floorplan": "images/floorplan-prop3.jpg",
-      "url": "properties/prop3.html",
-      "added": {
-        "month": "June",
-        "day": 15,
-        "year": 2025
-      }
+      "images": [
+        "images/prop3_1.jpg",
+        "images/prop3_2.jpg",
+        "images/prop3_3.jpg",
+        "images/prop3_4.jpg",
+        "images/prop3_5.jpg",
+        "images/prop3_6.jpg"
+      ],
+      "added": { "month": "June", "day": 15, "year": 2025 }
     },
     {
       "id": "prop4",
@@ -59,12 +69,16 @@
       "description": "An ideal starter home for a first-time buyer. This cozy one-bedroom apartment is situated on the second floor of a modern development. It features a bright living area with a Juliet balcony, a compact but fully equipped kitchenette, and a modern bathroom suite. Located close to King's College Hospital and local transport links.",
       "location": "Camberwell New Road, London SE5",
       "picture": "images/prop4pic1small.jpg",
-      "url": "properties/prop4.html",
-      "added": {
-        "month": "November",
-        "day": 1,
-        "year": 2025
-      }
+      "floorplan": "images/floorplan-prop4.jpg",
+      "images": [
+        "images/prop4_1.jpg",
+        "images/prop4_2.jpg",
+        "images/prop4_3.jpg",
+        "images/prop4_4.jpg",
+        "images/prop4_5.jpg",
+        "images/prop4_6.jpg"
+      ],
+      "added": { "month": "November", "day": 1, "year": 2025 }
     },
     {
       "id": "prop5",
@@ -76,12 +90,15 @@
       "location": "High Street, Bromley BR1",
       "picture": "images/prop5pic1small.jpg",
       "floorplan": "images/floorplan-prop5.jpg",
-      "url": "properties/prop5.html",
-      "added": {
-        "month": "February",
-        "day": 20,
-        "year": 2025
-      }
+      "images": [
+        "images/prop5_1.jpg",
+        "images/prop5_2.jpg",
+        "images/prop5_3.jpg",
+        "images/prop5_4.jpg",
+        "images/prop5_5.jpg",
+        "images/prop5_6.jpg"
+      ],
+      "added": { "month": "February", "day": 20, "year": 2025 }
     },
     {
       "id": "prop6",
@@ -92,12 +109,16 @@
       "description": "A chic and contemporary two-bedroom apartment in a sought-after Chelsea location. Recently renovated to a high standard, it includes hardwood flooring, a state-of-the-art kitchen with granite countertops, and a luxurious bathroom with rainfall shower. The building offers a 24-hour concierge and underground parking.",
       "location": "Chelsea Manor Street, London SW3",
       "picture": "images/prop6pic1small.jpg",
-      "url": "properties/prop6.html",
-      "added": {
-        "month": "August",
-        "day": 10,
-        "year": 2025
-      }
+      "floorplan": "images/floorplan-prop6.jpg",
+      "images": [
+        "images/prop6_1.jpg",
+        "images/prop6_2.jpg",
+        "images/prop6_3.jpg",
+        "images/prop6_4.jpg",
+        "images/prop6_5.jpg",
+        "images/prop6_6.jpg"
+      ],
+      "added": { "month": "August", "day": 10, "year": 2025 }
     },
     {
       "id": "prop7",
@@ -108,13 +129,16 @@
       "description": "Charming three-bedroom end-of-terrace house available at an excellent price. This property requires some cosmetic updating but offers solid bones and a generous corner plot garden. It includes a lounge, separate dining room, and a downstairs WC. A fantastic investment opportunity or project for a growing family.",
       "location": "Waddon New Road, Croydon CR0",
       "picture": "images/prop7pic1small.jpg",
-      "floorplan": "images/floorplan-prop1.jpg",
-      "url": "properties/prop7.html",
-      "added": {
-        "month": "December",
-        "day": 5,
-        "year": 2024
-      }
+      "floorplan": "images/floorplan-prop7.jpg",
+      "images": [
+        "images/prop7_1.jpg",
+        "images/prop7_2.jpg",
+        "images/prop7_3.jpg",
+        "images/prop7_4.jpg",
+        "images/prop7_5.jpg",
+        "images/prop7_6.jpg"
+      ],
+      "added": { "month": "December", "day": 5, "year": 2024 }
     }
   ]
 }
