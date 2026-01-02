@@ -118,91 +118,110 @@
   font-weight: 500;
 }
 
-/* Feedback: Big Favorite Button Hover States */
+/* --- 1. AESTHETIC FAVORITE BUTTON --- */
 .fav-btn-large {
-  padding: 16px;
-  background-color: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.2s ease; /* Smooth transition */
   width: 100%;
-  color: #444;
+  padding: 18px 24px; /* Taller, clickable area */
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0; /* Subtle light gray border */
+  border-radius: 12px; /* Smooth rounded corners */
+  color: #262637; /* Navy Text */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* Space between text and heart */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth spring animation */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.03); /* Very subtle depth */
 }
 
-/* The Hover Effect */
-.fav-btn-large:hover { 
-  border-color: #0056b3; 
-  color: #0056b3; 
-  background-color: #f0f8ff; /* Light blue tint */
-  transform: translateY(-2px); /* Moves up slightly */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adds shadow */
+/* Hover State */
+.fav-btn-large:hover {
+  border-color: #00d68f; /* Brand Green border */
+  background-color: #f0fdf9; /* Very light green tint */
+  transform: translateY(-3px); /* Lifts up */
+  box-shadow: 0 10px 20px rgba(0, 214, 143, 0.15); /* Green glow shadow */
 }
 
+/* Click/Active State (Button Press) */
 .fav-btn-large:active {
-  transform: translateY(0); /* Buttons presses down on click */
+  transform: translateY(-1px);
 }
 
-.fav-btn-large.active { 
-  background-color: #fff0f3; 
-  border-color: #ff4757; 
-  color: #ff4757; 
+/* When Item is Favorited (Active) */
+.fav-btn-large.active {
+  background-color: #e31c58; /* Brand Pink/Red */
+  border-color: #e31c58;
+  color: white;
+  box-shadow: 0 8px 20px rgba(227, 28, 88, 0.3); /* Red glow */
 }
+
 .fav-btn-large.active:hover {
-  background-color: #ffe0e6;
+  background-color: #c9154a; /* Darker red on hover */
+  transform: translateY(-3px);
 }
 
-/* Tabs Styling */
-.tabs-section { margin-top: 10px; }
-
-.react-tabs__tab-list { 
-  border-bottom: 2px solid #eee; 
-  padding: 0; 
-  margin-bottom: 25px; 
-  display: flex; 
-  gap: 30px; 
+/* --- 2. MODERN TABS STYLING --- */
+.tabs-section {
+  margin-top: 40px;
 }
 
-.react-tabs__tab { 
-  padding: 12px 0; 
-  cursor: pointer; 
-  color: #95a5a6; 
-  border-bottom: 3px solid transparent; 
-  font-weight: 600; 
-  transition: color 0.2s;
-  font-size: 1rem;
+/* The Container Line */
+.react-tabs__tab-list {
+  display: flex;
+  gap: 30px; /* Space between tabs */
+  padding: 0;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #f1f5f9; /* Light line running across */
 }
 
+/* Individual Tab */
+.react-tabs__tab {
+  list-style: none;
+  padding: 12px 0; /* Vertical padding only */
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #94a3b8; /* Muted gray text */
+  border-bottom: 3px solid transparent; /* Hidden underline */
+  transition: all 0.3s ease;
+  font-size: 1.05rem;
+  position: relative;
+  top: 2px; /* Overlap the border line */
+}
+
+/* Tab Hover */
 .react-tabs__tab:hover {
-  color: #0056b3; /* Visual clue on hover */
+  color: #00d68f; /* Green text on hover */
 }
 
-.react-tabs__tab--selected { 
-  color: #0056b3; 
-  border-bottom: 3px solid #0056b3; 
+/* Active Tab (Selected) */
+.react-tabs__tab--selected {
+  color: #262637; /* Navy Text */
+  border-bottom: 3px solid #00d68f; /* Solid Green Underline */
 }
 
-.react-tabs__tab:focus { 
-  outline: none; 
+/* Remove default focus outline */
+.react-tabs__tab:focus {
+  outline: none;
 }
 
-.tab-content { 
-  line-height: 1.7; 
-  color: #555; 
+/* Tab Content Box */
+.tab-content {
+  background: #ffffff;
+  padding: 20px 0; /* Spacing for content */
+  color: #475569;
+  line-height: 1.8;
   font-size: 1rem;
+  animation: fadeIn 0.4s ease; /* Fade in effect when switching */
 }
 
-.tab-content img { 
-  max-width: 100%; 
-  border-radius: 8px; 
-  border: 1px solid #eee; 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Mobile Response */
