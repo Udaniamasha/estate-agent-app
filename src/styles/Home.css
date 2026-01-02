@@ -68,6 +68,7 @@
   transition: all 0.2s;
   background-color: #fff;
   min-height: 42px; /* Ensures inputs and dropdowns are same height */
+  box-sizing: border-box;
 }
 
 .search-grid input:focus,
