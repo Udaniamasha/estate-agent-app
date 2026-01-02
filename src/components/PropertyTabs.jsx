@@ -1,8 +1,13 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import DOMPurify from 'dompurify';
 
 const PropertyTabs = ({ description, floorPlanImg, location}) => {
+
+  // Sanitize the HTML string to remove any malicious scripts
+  const safeDescription = DOMPurify.sanitize(description);
+
   // Create a search query safe for URLs
   const mapQuery = encodeURIComponent(location); 
   return (
@@ -17,7 +22,7 @@ const PropertyTabs = ({ description, floorPlanImg, location}) => {
         <TabPanel>
           <div className="tab-content description">
             <h3>Property Description</h3>
-            <p dangerouslySetInnerHTML={{ __html: description }}></p>
+            <p dangerouslySetInnerHTML={{ __html: safeDescription }}></p>
           </div>
         </TabPanel>
 
