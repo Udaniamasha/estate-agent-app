@@ -1,3 +1,4 @@
+
 /* GLOBAL RESETS */
 :root {
   --primary-color: #0056b3;
@@ -5,24 +6,30 @@
   --font-main: 'Poppins', sans-serif;
 }
 
-body {
+html, body, #root {
   margin: 0;
   padding: 0;
-  font-family: var(--font-main);
-  background-color: var(--bg-color);
-  color: #333;
-  overflow-x: hidden; /* Prevent accidental horizontal scroll */
+  width: 100%;       /* Forces edge-to-edge */
+  max-width: 100%;   /* Removes any default limits */
+  height: 100%;
+  overflow-x: hidden;
 }
 
-/* APP WRAPPER: Makes sure Footer stays at the bottom */
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+}
+
+/* Wrapper forces footer to bottom */
 .app-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Full viewport height */
+  min-height: 100vh;
+  width: 100%;
 }
 
-/* MAIN CONTENT: Pushes Footer down */
+/* Main content area expands but doesn't restrict width yet */
 .main-content-area {
-  flex: 1; /* Grows to fill available space */
+  flex: 1;
   width: 100%;
 }
