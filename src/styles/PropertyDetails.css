@@ -1,56 +1,68 @@
+/* src/styles/PropertyDetails.css */
+
 /* Container */
 .details-page-container {
-  max-width: 1200px; /* Increased width to fill more screen */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px; /* More breathing room */
   background: white;
   min-height: 100vh;
 }
 
+/* Back Link - Improved Hover */
 .back-link {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: #555;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 25px;
+  color: #666;
   text-decoration: none;
   font-weight: 600;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
 }
 
-/* GRID SYSTEM: This splits the page into two columns on computer screens */
+.back-link:hover {
+  color: #0056b3; /* Primary Blue */
+  transform: translateX(-5px); /* Subtle slide left animation */
+}
+
+/* GRID SYSTEM */
 .details-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr; /* Image takes 60%, Details take 40% */
-  gap: 40px;
+  grid-template-columns: 1.5fr 1fr; /* 60% / 40% split */
+  gap: 50px; /* Increased gap for cleaner look */
   align-items: start;
 }
 
-/* Left Column: Gallery */
+/* --- Left Column: Gallery --- */
 .gallery-section {
   width: 100%;
 }
 
 .main-image-container {
   width: 100%;
-  height: 500px; /* Good height for large photos */
-  background: #f4f4f4;
+  height: 500px;
+  background: #f8f9fa;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 12px; /* Softer corners */
   overflow: hidden;
   margin-bottom: 15px;
-  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Soft shadow */
+  border: 1px solid #eee;
 }
 
 .main-image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Fills the box nicely */
+  object-fit: cover;
 }
 
 .thumbnails-row {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Evenly spreads thumbnails */
-  gap: 10px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
 }
 
 .thumbnail {
@@ -58,59 +70,151 @@
   height: 70px;
   object-fit: cover;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 2px solid transparent;
   opacity: 0.7;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth spring animation */
 }
 
-.thumbnail:hover, .thumbnail.active {
+/* Feedback: Thumbnail Hover State */
+.thumbnail:hover {
+  opacity: 1;
+  transform: scale(1.05); /* Zooms in slightly */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 2; /* Pop above others */
+}
+
+.thumbnail.active {
   opacity: 1;
   border-color: #0056b3;
+  transform: scale(1.05);
 }
 
-/* Right Column: Info & Tabs */
+/* --- Right Column: Info & Tabs --- */
 .info-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 
-.header-text h1 { margin: 0 0 10px 0; color: #333; font-size: 2rem; }
-.price-tag { color: #0056b3; margin: 0; font-size: 1.8rem; font-weight: bold; }
-.meta-info { color: #666; font-size: 1.1rem; margin-top: 5px; }
+.header-text h1 { 
+  margin: 0 0 10px 0; 
+  color: #2c3e50; 
+  font-size: 2.2rem; 
+  line-height: 1.2;
+}
 
-/* Big Favorite Button */
+.price-tag { 
+  color: #0056b3; 
+  margin: 0; 
+  font-size: 1.8rem; 
+  font-weight: 700; 
+}
+
+.meta-info { 
+  color: #7f8c8d; 
+  font-size: 1.1rem; 
+  margin-top: 8px; 
+  font-weight: 500;
+}
+
+/* Feedback: Big Favorite Button Hover States */
 .fav-btn-large {
-  padding: 15px;
+  padding: 16px;
   background-color: white;
-  border: 2px solid #ddd;
+  border: 2px solid #e0e0e0;
   border-radius: 8px;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  transition: all 0.2s;
+  transition: all 0.2s ease; /* Smooth transition */
   width: 100%;
+  color: #444;
 }
 
-.fav-btn-large:hover { border-color: #0056b3; color: #0056b3; }
-.fav-btn-large.active { background-color: #ffebee; border-color: #ff4757; color: #ff4757; }
+/* The Hover Effect */
+.fav-btn-large:hover { 
+  border-color: #0056b3; 
+  color: #0056b3; 
+  background-color: #f0f8ff; /* Light blue tint */
+  transform: translateY(-2px); /* Moves up slightly */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adds shadow */
+}
+
+.fav-btn-large:active {
+  transform: translateY(0); /* Buttons presses down on click */
+}
+
+.fav-btn-large.active { 
+  background-color: #fff0f3; 
+  border-color: #ff4757; 
+  color: #ff4757; 
+}
+.fav-btn-large.active:hover {
+  background-color: #ffe0e6;
+}
 
 /* Tabs Styling */
 .tabs-section { margin-top: 10px; }
-.react-tabs__tab-list { border-bottom: 2px solid #eee; padding: 0; margin-bottom: 20px; display: flex; gap: 20px; }
-.react-tabs__tab { padding: 10px 0; cursor: pointer; color: #888; border-bottom: 3px solid transparent; font-weight: 600; }
-.react-tabs__tab--selected { color: #0056b3; border-bottom: 3px solid #0056b3; }
-.react-tabs__tab:focus { outline: none; }
-.tab-content { line-height: 1.6; color: #444; }
-.tab-content img { max-width: 100%; border-radius: 8px; border: 1px solid #eee; }
 
-/* Mobile Response: Stack them back to one column on phones */
+.react-tabs__tab-list { 
+  border-bottom: 2px solid #eee; 
+  padding: 0; 
+  margin-bottom: 25px; 
+  display: flex; 
+  gap: 30px; 
+}
+
+.react-tabs__tab { 
+  padding: 12px 0; 
+  cursor: pointer; 
+  color: #95a5a6; 
+  border-bottom: 3px solid transparent; 
+  font-weight: 600; 
+  transition: color 0.2s;
+  font-size: 1rem;
+}
+
+.react-tabs__tab:hover {
+  color: #0056b3; /* Visual clue on hover */
+}
+
+.react-tabs__tab--selected { 
+  color: #0056b3; 
+  border-bottom: 3px solid #0056b3; 
+}
+
+.react-tabs__tab:focus { 
+  outline: none; 
+}
+
+.tab-content { 
+  line-height: 1.7; 
+  color: #555; 
+  font-size: 1rem;
+}
+
+.tab-content img { 
+  max-width: 100%; 
+  border-radius: 8px; 
+  border: 1px solid #eee; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Mobile Response */
 @media (max-width: 900px) {
-  .details-grid { grid-template-columns: 1fr; gap: 20px; }
-  .main-image-container { height: 300px; }
+  .details-grid { 
+    grid-template-columns: 1fr; 
+    gap: 30px; 
+  }
+  .main-image-container { 
+    height: 350px; 
+  }
+  .header-text h1 {
+    font-size: 1.8rem;
+  }
 }
