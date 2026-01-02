@@ -9,7 +9,7 @@ const Footer = () => {
         
         {/* Column 1: Brand & About */}
         <div className="footer-col">
-          <h3>Dream<span style={{color: '#0056b3'}}>Estate</span></h3>
+          <h3>Dream<span style={{color:' #00d68f'}}>Estate</span></h3>
           <p>
             Your trusted partner in finding the perfect home. 
             Search thousands of properties for sale and to rent 
