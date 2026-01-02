@@ -40,21 +40,12 @@ const PropertyTabs = ({ description, floorPlanImg, location}) => {
           <div className="tab-content map">
             <h3>Location Map</h3>
             <iframe 
-              title="Google Map"
-              width="100%" 
-              height="400" 
-              style={{ border: 0, borderRadius: '8px' }} 
-              loading="lazy" 
-              allowFullScreen 
-              // Uses the location to find the map area
-              src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${mapQuery}`}
-            ></iframe>
-            {/* NOTE: Without a real API Key, the above might show an error or "Development Mode". 
-                For university coursework without an API key, use the standard embed output with the query: */}
-            <iframe 
+               title="Property Location"
                width="100%" 
-               height="400" 
-               style={{ border: 0 }}
+               height="450" 
+               style={{ border: 0, borderRadius: '8px', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}
+               loading="lazy"
+               allowFullScreen
                src={`https://maps.google.com/maps?q=${mapQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
             ></iframe>
           </div>
