@@ -66,11 +66,7 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
       {/* FORM BODY */}
       <form onSubmit={handleSearch} className="rm-form-body">
         
-        <div className="rm-title">
-          <h2>Properties for sale in <span className="highlight">UK</span></h2>
-          <p>Search the latest homes available now</p>
-        </div>
-
+\
         {/* TOP ROW: Postcode & Type */}
         <div className="rm-row-main">
           <div className="rm-input-group big-input">
@@ -167,7 +163,7 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
               <DatePicker 
                 selected={filters.dateAdded} 
                 onChange={handleDateChange} 
-                placeholderText="Anytime" 
+                placeholderText="From" 
                 className="rm-date-input" 
                 dateFormat="dd/MM/yyyy"
                 isClearable
