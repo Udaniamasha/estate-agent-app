@@ -7,8 +7,7 @@ import Home from './pages/Home';
 
 // --- MOCKS ---
 
-// FIX: Corrected path from '../data' to './data'
-// This ensures the test uses this fake data instead of the real file.
+// 1. Mock properties data
 vi.mock('./data/properties.json', () => ({
   default: {
     properties: [
@@ -34,7 +33,7 @@ vi.mock('./data/properties.json', () => ({
   }
 }));
 
-// Mock Drag-and-Drop to prevent errors in test environment
+// 2. Mock Drag-and-Drop (Critical for testing)
 vi.mock('react-beautiful-dnd', () => ({
   DragDropContext: ({ children }) => <div>{children}</div>,
   Droppable: ({ children }) => children({ draggableProps: {}, innerRef: null }, {}),
@@ -53,72 +52,80 @@ const renderHome = () => {
 
 describe('Estate Agent App Tests', () => {
 
-  test('1. Renders the Search Page successfully', () => {
+  test('1. Renders the Search Page and Title', () => {
     renderHome();
-    // Should see the title
-    expect(screen.getByText(/Find Your Dream Home/i)).toBeInTheDocument();
-    // Should see our MOCK data, not the real data
+    // Use a flexible regex matcher for the title to handle new lines/spans
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/believe in finding it/i);
+    
+    // Check if the mock property is rendered
     expect(screen.getByText('Test House Location')).toBeInTheDocument();
   });
 
-  test('2. Filters properties by Price (Exclude items outside range)', async () => {
+  test('2. Filters properties by Postcode (Search Logic)', async () => {
     renderHome();
     
-    // Default: Both visible
+    // Check initial state (Both visible)
     expect(screen.getByText('Test House Location')).toBeInTheDocument();
     expect(screen.getByText('Test Flat Location')).toBeInTheDocument();
-
-    // Set Max Price to 300,000 (Should exclude the 500k House)
-    const maxPriceInput = screen.getByLabelText(/Max Price/i);
-    fireEvent.change(maxPriceInput, { target: { value: '300000' } });
+    
+    // Find the Postcode Input (Standard text input)
+    // In SearchForm.jsx: placeholder="e.g. NW1, BR1, Leeds"
+    const postcodeInput = screen.getByPlaceholderText(/e.g. NW1/i);
+    
+    // Type "Flat" to match the second property
+    fireEvent.change(postcodeInput, { target: { value: 'Flat' } });
     
     // Click Search
-    const searchBtn = screen.getByText(/Search/i);
+    const searchBtn = screen.getByText(/Search Properties/i);
     fireEvent.click(searchBtn);
 
-    // House (500k) should be gone
-    expect(screen.queryByText('Test House Location')).not.toBeInTheDocument();
-    // Flat (200k) should remain
+    // House should disappear (location is "Test House Location")
+    // Flat should remain (location is "Test Flat Location")
+    await waitFor(() => {
+        expect(screen.queryByText('Test House Location')).not.toBeInTheDocument();
+    });
+    
     expect(screen.getByText('Test Flat Location')).toBeInTheDocument();
   });
 
-  test('3. Favorites list prevents duplicates / starts empty', () => {
+  test('3. Favorites list starts empty', () => {
     renderHome();
-    expect(screen.getByText(/Favorites \(0\)/i)).toBeInTheDocument();
+    // Your new layout uses "Saved Properties (0)"
+    expect(screen.getByText(/Saved Properties \(0\)/i)).toBeInTheDocument();
   });
 
   test('4. Add to Favorites works via button', async () => {
     renderHome();
     
-    // Find all heart buttons
+    // Find heart buttons. Your PropertyCard has aria-label="Add to favorites"
     const addButtons = screen.getAllByLabelText(/Add to favorites/i);
     
-    // Click the first one (Test House)
+    // Click the first one
     fireEvent.click(addButtons[0]);
 
-    // Expect sidebar count to increase to 1
-    expect(screen.getByText(/Favorites \(1\)/i)).toBeInTheDocument();
+    // Check count increases
+    expect(screen.getByText(/Saved Properties \(1\)/i)).toBeInTheDocument();
     
-    // Verify the mock item text is in the sidebar
-    // We search within the sidebar container to be specific
-    const sidebar = screen.getByText(/Favorites \(1\)/i).closest('.favorites-sidebar');
+    // Check item appears in sidebar. 
+    // We look for the text specifically within the sidebar container.
+    const sidebar = document.querySelector('.favorites-sidebar');
     expect(sidebar).toHaveTextContent('Test House Location');
   });
 
   test('5. Clear Favorites button empties the list', async () => {
     renderHome();
     
-    // 1. Add an item first to make list non-empty
+    // 1. Add item
     const addButtons = screen.getAllByLabelText(/Add to favorites/i);
     fireEvent.click(addButtons[0]);
-    expect(screen.getByText(/Favorites \(1\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Saved Properties \(1\)/i)).toBeInTheDocument();
 
-    // 2. Click "Clear All" button
-    const clearBtn = screen.getByText(/Clear All/i);
+    // 2. Click "Clear List" button
+    const clearBtn = screen.getByText(/Clear List/i);
     fireEvent.click(clearBtn);
 
     // 3. Count should go back to 0
-    expect(screen.getByText(/Favorites \(0\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Saved Properties \(0\)/i)).toBeInTheDocument();
   });
 
 });
