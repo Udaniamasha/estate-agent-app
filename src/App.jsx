@@ -14,17 +14,14 @@ function App() {
         {/* The Wrapper holds everything but allows full width */}
         <div className="app-wrapper">
           
-          {/* 1. HEADER (Will now span 100% width) */}
-          <NavBar /> 
           
-          {/* 2. MAIN CONTENT (Grows to fill space) */}
+          <NavBar /> 
           <div className="main-content-area">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/property/:id" element={<PropertyDetails />} />
             </Routes>
           </div>
-          
           {/* 3. FOOTER (Will now span 100% width) */}
           <Footer />
           
