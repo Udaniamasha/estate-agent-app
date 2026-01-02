@@ -10,7 +10,7 @@ const Home = () => {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [filters, setFilters] = useState({
-    type: 'any', minPrice: 0, maxPrice: 10000000, minBedrooms: 0, maxBedrooms: 10, postcode: '', dateAdded: null
+    type: 'any', minPrice: 0, maxPrice: 10000000, minBedrooms: 0, maxBedrooms: 10, postcode: '', dateAdded: null,dateAddedMax: null
   });
   const { addFavorite, removeFavorite, favoriteProperties, clearFavorites } = useFavorites();
 
@@ -41,15 +41,22 @@ const Home = () => {
       const priceMatch = property.price >= parseInt(filters.minPrice) && property.price <= parseInt(filters.maxPrice);
       const bedroomMatch = property.bedrooms >= parseInt(filters.minBedrooms) && property.bedrooms <= parseInt(filters.maxBedrooms);
       const postcodeMatch = filters.postcode === '' || property.location.toLowerCase().includes(filters.postcode.toLowerCase());
-      let dateMatch = true;
-      if (filters.dateAdded) {
-        const propertyDate = createDateFromObject(property.added);
-        dateMatch = propertyDate >= filters.dateAdded;
-      }
-      return typeMatch && priceMatch && bedroomMatch && postcodeMatch && dateMatch;
-    });
-    setFilteredProperties(results);
-  };
+      // Date Logic: Check BOTH Min and Max
+    let dateMatch = true;
+    const propertyDate = createDateFromObject(property.added);
+    
+    if (filters.dateAdded) {
+      dateMatch = dateMatch && (propertyDate >= filters.dateAdded);
+    }
+    if (filters.dateAddedMax) {
+      dateMatch = dateMatch && (propertyDate <= filters.dateAddedMax);
+    }
+
+    return typeMatch && priceMatch && bedroomMatch && postcodeMatch && dateMatch;
+  });
+  setFilteredProperties(results);
+};
+
 
   const clearFilters = () => {
     setFilteredProperties(properties);
