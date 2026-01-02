@@ -66,7 +66,7 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
       {/* FORM BODY */}
       <form onSubmit={handleSearch} className="rm-form-body">
         
-\
+
         {/* TOP ROW: Postcode & Type */}
         <div className="rm-row-main">
           <div className="rm-input-group big-input">
