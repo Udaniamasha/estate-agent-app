@@ -11,20 +11,23 @@ function App() {
   return (
     <FavoritesProvider>
       <Router>
+        {/* The Wrapper holds everything but allows full width */}
         <div className="app-wrapper">
-          {/* Header spans full width */}
+          
+          {/* 1. HEADER (Will now span 100% width) */}
           <NavBar /> 
           
-          {/* Main grows to fill space, but doesn't restrict width yet */}
-          <main className="main-content-area">
+          {/* 2. MAIN CONTENT (Grows to fill space) */}
+          <div className="main-content-area">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/property/:id" element={<PropertyDetails />} />
             </Routes>
-          </main>
+          </div>
           
-          {/* Footer spans full width */}
+          {/* 3. FOOTER (Will now span 100% width) */}
           <Footer />
+          
         </div>
       </Router>
     </FavoritesProvider>
