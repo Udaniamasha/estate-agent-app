@@ -1,0 +1,194 @@
+/* CONTAINER */
+.rightmove-search-container {
+  background: transparent;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* TABS (Buy / Rent) */
+.search-tabs {
+  display: flex;
+  margin-bottom: -2px; /* Overlap the form */
+  position: relative;
+  z-index: 1;
+}
+
+.tab-btn {
+  background: rgba(30, 30, 40, 0.7); /* Dark see-through */
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: white;
+  color: #262637; /* Navy */
+}
+
+/* FORM BODY */
+.rm-form-body {
+  background: white;
+  padding: 30px;
+  border-radius: 0 8px 8px 8px; /* Top left is sharp for tab connection */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.rm-title h2 {
+  margin: 0 0 5px 0;
+  color: #262637;
+  font-size: 1.5rem;
+}
+.rm-title p {
+  margin: 0 0 25px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+.highlight { color: #00d68f; } /* Rightmove Green */
+
+/* INPUT GROUPS */
+.rm-input-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #262637;
+  margin-bottom: 8px;
+}
+
+/* ROW 1: Postcode & Type */
+.rm-row-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.rm-input-group input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Custom React Select Styling to match */
+/* Ensure the Selects take up full width inside the split container */
+.rm-select-container {
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+/* Customize React Select internal styling to match Rightmove inputs */
+.rm-select__control {
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  min-height: 42px !important; /* Matches standard inputs */
+  box-shadow: none !important;
+}
+.rm-select__control:hover {
+  border-color: #262637 !important; /* Navy on hover */
+}
+
+.rm-select__menu {
+  z-index: 100 !important; /* Ensure dropdown sits on top of everything */
+}
+
+
+/* ROW 2: Filters Grid */
+.rm-row-secondary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* SPLIT INPUTS (Min - Max) */
+.split-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.split-inputs input,
+.rm-date-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.dash { color: #999; font-weight: bold; }
+
+/* ACTIONS ROW */
+.rm-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.rm-clear-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+.rm-clear-btn {
+  background: none;
+  border: none;
+  color: #555;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.rm-clear-btn:hover {
+  color: #e31c58;
+  transform: scale(1.05);
+}
+
+
+.rm-search-btn {
+  background-color: #00d68f; /* THE RIGHTMOVE GREEN */
+  color: #0b3d2c;
+  border: none;
+  padding: 14px 40px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 214, 143, 0.3);
+  width: 100%;
+  max-width: 300px;
+}
+
+.rm-search-btn:hover {
+  background-color: #00c080;
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .rm-row-main { grid-template-columns: 1fr; }
+  .rm-row-secondary { grid-template-columns: 1fr; }
+  .rm-actions { flex-direction: column-reverse; }
+  .rm-search-btn { width: 100%; max-width: none; }
+}

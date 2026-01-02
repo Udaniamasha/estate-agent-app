@@ -10,195 +10,154 @@ const Home = () => {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   
-  // State for all filters
   const [filters, setFilters] = useState({
-    type: 'any', 
-    minPrice: 0, 
-    maxPrice: 10000000, 
-    minBedrooms: 0, 
-    maxBedrooms: 10, 
-    postcode: '', 
-    dateAdded: null,
-    dateAddedMax: null // Ensure this exists in initial state
+    type: 'any', minPrice: 0, maxPrice: 10000000, 
+    minBedrooms: 0, maxBedrooms: 10, postcode: '', 
+    dateAdded: null, dateAddedMax: null
   });
 
   const { addFavorite, removeFavorite, favoriteProperties, clearFavorites } = useFavorites();
 
-  // Load initial data
   useEffect(() => {
     setProperties(propertiesData.properties);
     setFilteredProperties(propertiesData.properties);
   }, []);
 
-  // --- Filter Logic ---
-  
-  // Handles standard inputs (Text, Numbers, Selects)
+  // --- HANDLERS ---
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFilters(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handles the "Start Date" picker specifically
   const handleDateChange = (date) => {
     setFilters(prev => ({ ...prev, dateAdded: date }));
   };
 
-  // Helper to convert JSON Month names to JS Dates
   const createDateFromObject = (dateObj) => {
-    const monthMap = { 
-      "January": 0, "February": 1, "March": 2, "April": 3, "May": 4, "June": 5, 
-      "July": 6, "August": 7, "September": 8, "October": 9, "November": 10, "December": 11 
-    };
+    const monthMap = { "January": 0, "February": 1, "March": 2, "April": 3, "May": 4, "June": 5, "July": 6, "August": 7, "September": 8, "October": 9, "November": 10, "December": 11 };
     return new Date(dateObj.year, monthMap[dateObj.month], dateObj.day);
   };
 
-  // Main Search Function
   const handleSearch = (e) => {
     e.preventDefault();
-    
     const results = properties.filter(property => {
-      // Type
       const typeMatch = filters.type === 'any' || property.type.toLowerCase() === filters.type.toLowerCase();
-      
-      // Price (Use Number() to handle empty strings safely)
       const priceMatch = property.price >= Number(filters.minPrice) && property.price <= Number(filters.maxPrice);
-      
-      // Bedrooms
       const bedroomMatch = property.bedrooms >= Number(filters.minBedrooms) && property.bedrooms <= Number(filters.maxBedrooms);
-      
-      // Postcode
       const postcodeMatch = filters.postcode === '' || property.location.toLowerCase().includes(filters.postcode.toLowerCase());
       
-      // Date Logic: Check BOTH Min and Max
       let dateMatch = true;
       const propertyDate = createDateFromObject(property.added);
-      
-      // After Start Date
-      if (filters.dateAdded) {
-        dateMatch = dateMatch && (propertyDate >= filters.dateAdded);
-      }
-      // Before End Date
-      if (filters.dateAddedMax) {
-        dateMatch = dateMatch && (propertyDate <= filters.dateAddedMax);
-      }
+      if (filters.dateAdded) dateMatch = dateMatch && (propertyDate >= filters.dateAdded);
+      if (filters.dateAddedMax) dateMatch = dateMatch && (propertyDate <= filters.dateAddedMax);
 
       return typeMatch && priceMatch && bedroomMatch && postcodeMatch && dateMatch;
     });
-    
     setFilteredProperties(results);
   };
 
-  // Clear all filters and reset list
   const clearFilters = () => {
     setFilteredProperties(properties);
-    setFilters({ 
-      type: 'any', 
-      minPrice: 0, 
-      maxPrice: 10000000, 
-      minBedrooms: 0, 
-      maxBedrooms: 10, 
-      postcode: '', 
-      dateAdded: null,
-      dateAddedMax: null // <--- CRITICAL FIX: Reset the Max Date too!
-    });
+    setFilters({ type: 'any', minPrice: 0, maxPrice: 10000000, minBedrooms: 0, maxBedrooms: 10, postcode: '', dateAdded: null, dateAddedMax: null });
   };
 
-  // --- Drag and Drop Logic ---
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
-
-    // 1. If dropped outside any list (e.g. dragged into empty space)
     if (!destination) {
-      // Feature: Drag out to remove from favorites
-      if (source.droppableId === 'favorites-list') {
-        removeFavorite(draggableId);
-      }
+      if (source.droppableId === 'favorites-list') removeFavorite(draggableId);
       return;
     }
-
-    // 2. If dropped INTO the favorites list
     if (destination.droppableId === 'favorites-list' && source.droppableId !== 'favorites-list') {
       const propertyToAdd = properties.find(p => p.id === draggableId);
-      if (propertyToAdd) {
-        addFavorite(propertyToAdd);
-      }
+      if (propertyToAdd) addFavorite(propertyToAdd);
     }
   };
 
-  // Helper to check if item is in favorites
   const isFavorite = (id) => favoriteProperties.some(fav => fav.id === id);
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="home-container">
+      <div className="home-page">
         
-        {/* Left/Main Column: Search & Results */}
-        <div className="main-content">
-          <h1>Find Your Dream Home</h1>
-          <SearchForm 
-            filters={filters} 
-            handleInputChange={handleInputChange} 
-            handleDateChange={handleDateChange} 
-            handleSearch={handleSearch} 
-            clearFilters={clearFilters} 
-          />
+        {/* HERO SECTION */}
+        <div className="hero-section">
+          <div className="hero-overlay">
+            
+            {/* INSPIRATIONAL TEXT */}
+            <div className="hero-text-content">
+              <h1>
+                <span className="hero-highlight">believe</span> in finding it
+              </h1>
+              <p>with the UK’s widest choice of homes</p>
+            </div>
 
-          <div className="results-header">
-            <h3>{filteredProperties.length} properties found</h3>
+            {/* SEARCH BOX */}
+            <div className="search-container">
+              <SearchForm 
+                filters={filters} 
+                handleInputChange={handleInputChange} 
+                handleDateChange={handleDateChange} 
+                handleSearch={handleSearch} 
+                clearFilters={clearFilters} 
+              />
+            </div>
+
           </div>
-
-          <Droppable droppableId="search-results" direction="horizontal">
-            {(provided) => (
-              <div 
-                ref={provided.innerRef} 
-                {...provided.droppableProps} 
-                className="property-grid"
-              >
-                {filteredProperties.map((property, index) => (
-                  <Draggable key={property.id} draggableId={property.id} index={index}>
-                    {(provided, snapshot) => (
-                      <div 
-                        ref={provided.innerRef} 
-                        {...provided.draggableProps} 
-                        {...provided.dragHandleProps}
-                        style={{ ...provided.draggableProps.style }} // Essential for DnD movement
-                      >
-                        <PropertyCard 
-                          property={property} 
-                          isFavorite={isFavorite(property.id)} 
-                          onToggleFavorite={(p) => isFavorite(p.id) ? removeFavorite(p.id) : addFavorite(p)}
-                          isDragging={snapshot.isDragging}
-                        />
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
         </div>
 
-        {/* Right Sidebar: Favorites */}
-        <div className="favorites-sidebar">
-          <h3>Favorites ({favoriteProperties.length})</h3>
-          
-          <div className="favorites-drop-zone">
-            {favoriteProperties.length === 0 ? (
-                <p style={{ fontSize: '0.9rem', color: '#888', marginBottom: '10px' }}>
-                  Drag properties here to save them.
-                </p>
-            ) : (
-                <button onClick={clearFavorites} className="clear-fav-btn">Clear All</button>
-            )}
+        {/* CONTENT SECTION */}
+        <div className="content-wrapper">
+          {/* Results Column */}
+          <div className="results-column">
+            <div className="results-header">
+              <h3>{filteredProperties.length} Properties For Sale</h3>
+            </div>
 
-            <Droppable droppableId="favorites-list">
+            <Droppable droppableId="search-results" direction="horizontal">
               {(provided) => (
                 <div 
                   ref={provided.innerRef} 
                   {...provided.droppableProps} 
-                  className="fav-list-droppable"
+                  className="property-grid"
                 >
+                  {filteredProperties.map((property, index) => (
+                    <Draggable key={property.id} draggableId={property.id} index={index}>
+                      {(provided, snapshot) => (
+                        <div 
+                          ref={provided.innerRef} 
+                          {...provided.draggableProps} 
+                          {...provided.dragHandleProps}
+                          style={{ ...provided.draggableProps.style }}
+                        >
+                          <PropertyCard 
+                            property={property} 
+                            isFavorite={isFavorite(property.id)} 
+                            onToggleFavorite={(p) => isFavorite(p.id) ? removeFavorite(p.id) : addFavorite(p)}
+                            isDragging={snapshot.isDragging}
+                          />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </div>
+
+          {/* Sidebar */}
+          <div className="favorites-sidebar">
+            <h3>Saved Properties ({favoriteProperties.length})</h3>
+            
+            {favoriteProperties.length > 0 && (
+                <button onClick={clearFavorites} className="clear-fav-btn">Clear List</button>
+            )}
+
+            <Droppable droppableId="favorites-list">
+              {(provided) => (
+                <div ref={provided.innerRef} {...provided.droppableProps} className="fav-list-droppable" style={{minHeight: '100px'}}>
+                  {favoriteProperties.length === 0 && <p style={{color:'#999', fontSize:'0.9rem'}}>Drag properties here...</p>}
+                  
                   {favoriteProperties.map((fav, index) => (
                     <Draggable key={fav.id} draggableId={fav.id} index={index}>
                       {(provided) => (
@@ -209,11 +168,11 @@ const Home = () => {
                           className="fav-item-mini"
                           style={{ ...provided.draggableProps.style }}
                         >
-                          <button onClick={() => removeFavorite(fav.id)} className="remove-fav-x" aria-label="Remove">&times;</button>
-                          <img src={`/${fav.picture}`} alt="thumb" onError={(e) => e.target.src='https://via.placeholder.com/60?text=NA'} />
+                          <button onClick={() => removeFavorite(fav.id)} className="remove-fav-x">&times;</button>
+                          <img src={`/${fav.picture}`} alt="thumb" onError={(e) => e.target.src='https://via.placeholder.com/60'} />
                           <div className="fav-info">
-                              <h5>{fav.location}</h5>
-                              <span>£{fav.price.toLocaleString()}</span>
+                              <h5 style={{margin:0}}>{fav.location}</h5>
+                              <span style={{color: '#00d68f', fontWeight:'bold'}}>£{fav.price.toLocaleString()}</span>
                           </div>
                         </div>
                       )}
@@ -224,8 +183,8 @@ const Home = () => {
               )}
             </Droppable>
           </div>
-        </div>
 
+        </div>
       </div>
     </DragDropContext>
   );
