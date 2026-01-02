@@ -45,11 +45,11 @@ const PropertyDetails = () => {
             {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'} {isFavorite ? '❤️' : '🤍'}
           </button>
 
-          <PropertyTabs 
-            description={property.description}
-            floorPlanImg={property.floorplan} // <<< WE WILL ADD THIS NEXT
-            mapUrl={property.mapUrl} 
-          />
+           <PropertyTabs
+             description={property.description}
+             floorPlanImg={property.floorplan}
+             location={property.location} // <--- Pass the location
+           />
         </div>
 
       </div>
