@@ -39,7 +39,7 @@ const PropertyTabs = ({ description, floorPlanImg, location }) => {
             <h3>Floor Plan</h3>
 
             {/* If a floor plan image exists, show it; otherwise display a placeholder message */}
-            {floorPlanImg ? (
+            {floorPlanImg && floorPlanImg.trim() !== '' ? (
               <img
                 src={`/${floorPlanImg}`}
                 alt="Floor Plan"
