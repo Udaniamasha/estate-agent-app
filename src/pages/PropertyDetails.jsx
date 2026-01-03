@@ -7,57 +7,76 @@ import PropertyTabs from '../components/PropertyTabs';
 import '../styles/PropertyDetails.css'; 
 
 const PropertyDetails = () => {
+  // Get the dynamic property ID from the URL (e.g., /property/prop1)
   const { id } = useParams();
+
+  // Find the matching property in the JSON data using its ID
   const property = propertiesData.properties.find(p => p.id === id);
+
+  // Access favourites context functions and current favourites list
   const { addFavorite, removeFavorite, favoriteProperties } = useFavorites();
 
-  // Handle case where property doesn't exist (e.g. wrong URL)
-  if (!property) return <div className="details-page-container"><h2>Property not found</h2><Link to="/">Back to Search</Link></div>;
+  // Handle cases where the property ID is invalid or missing
+  // This prevents the page from breaking and shows a friendly message instead
+  if (!property) {
+    return (
+      <div className="details-page-container">
+        <h2>Property not found</h2>
+        <Link to="/">Back to Search</Link>
+      </div>
+    );
+  }
 
+  // Check if the current property is already marked as a favourite
   const isFavorite = favoriteProperties.some(fav => fav.id === property.id);
   
-  // Use the 'images' array from JSON, or fallback to the main picture if array is missing
+  // Use property images from JSON if available,
+  // otherwise fall back to repeating the main picture to avoid blank sections
   const galleryImages = property.images && property.images.length > 0 
     ? property.images 
     : [property.picture, property.picture, property.picture, property.picture];
 
-   return (
+  return (
     <div className="details-page-container">
+      {/* Navigation link to return to main search page */}
       <Link to="/" className="back-link">&larr; Back to Search</Link>
 
-      {/* Grid Wrapper */}
+      {/* Main two-column layout */}
       <div className="details-grid">
         
-        {/* Left Column: Gallery */}
+        {/* Left Column: property image gallery */}
         <div className="left-column gallery-section">
           <PropertyGallery images={galleryImages} />
         </div>
 
-        {/* Right Column: Info & Tabs */}
+        {/* Right Column: property details, price, and tabs */}
         <div className="right-column info-section">
+
+          {/* Main information: location, price, and quick facts */}
           <div className="header-text">
             <h1>{property.location}</h1>
             <h2 className="price-tag">£{property.price.toLocaleString()}</h2>
-            <p className="meta-info">{property.type} • {property.bedrooms} Beds • {property.tenure}</p>
+            <p className="meta-info">
+              {property.type} • {property.bedrooms} Beds • {property.tenure}
+            </p>
           </div>
 
+          {/* Button to add/remove from favourites (updates in real-time) */}
           <button 
             onClick={() => isFavorite ? removeFavorite(property.id) : addFavorite(property)}
             className={`fav-btn-large ${isFavorite ? 'active' : ''}`}
           >
-            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'} {isFavorite ? '❤️' : '🤍'}
+            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}{' '}
+            {isFavorite ? '❤️' : '🤍'}
           </button>
 
-           {/* Tabs section (Description, Floorplan, Map) */}
-           <PropertyTabs
-             description={property.description}
-             floorPlanImg={property.floorplan}
-             location={property.location} 
-           />
-           
-           {/* REMOVED DUPLICATE GALLERY FROM HERE */}
+          {/* Tabs for Description, Floor Plan, and Map */}
+          <PropertyTabs
+            description={property.description}
+            floorPlanImg={property.floorplan}
+            location={property.location} 
+          />
         </div>
-
       </div>
     </div>
   );
