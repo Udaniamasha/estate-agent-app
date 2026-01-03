@@ -35,7 +35,7 @@ const PropertyGallery = ({ images }) => {
         {images.map((img, index) => (
           <img
             key={index}
-            src={{img}}
+            src={img}
             alt={`Thumbnail ${index + 1}`}
             // Clicking a thumbnail changes the main image
             onClick={() => setMainImage(img)}
