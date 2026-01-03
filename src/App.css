@@ -1,28 +1,36 @@
-/* GLOBAL DESIGN SYSTEM */
+/* ===============================
+   GLOBAL DESIGN SYSTEM
+   Centralised design tokens to
+   keep colours, spacing and fonts
+   consistent across the app
+================================ */
 :root {
-  /* Brand Colors - Rightmove Green/Navy Theme */
-  --primary-color: #262637; /* Dark Slate */
-  --accent-color: #00d68f;  /* Vibrant Green */
-  --highlight-color: #e31c58; /* Pink/Red */
+  /* Brand Colours (Rightmove-inspired theme) */
+  --primary-color: #262637;     /* Dark slate for headers and nav */
+  --accent-color: #00d68f;      /* Primary action / highlight colour */
+  --highlight-color: #e31c58;   /* Attention colour (errors / favourites) */
   
-  /* Backgrounds */
-  --bg-color: #f8f9fa;
-  --surface-color: #ffffff;
+  /* Background Colours */
+  --bg-color: #f8f9fa;          /* Main page background */
+  --surface-color: #ffffff;    /* Cards, panels, containers */
   
   /* Typography */
   --font-main: 'Poppins', sans-serif;
-  --text-dark: #2c3e50;
-  --text-medium: #6c757d;
+  --text-dark: #2c3e50;         /* Primary text colour */
+  --text-medium: #6c757d;       /* Secondary / muted text */
   
-  /* Spacing & Borders */
+  /* Spacing, Borders & Shadows */
   --radius-md: 8px;
   --radius-lg: 12px;
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
   --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
 }
 
-/* RESET */
+/* ===============================
+   BASE RESET & PAGE BEHAVIOUR
+================================ */
 html {
+  /* Enables smooth scrolling for anchor and route changes */
   scroll-behavior: smooth;
 }
 
@@ -30,42 +38,77 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh; 
+  min-height: 100vh;
   font-family: var(--font-main);
   background-color: var(--bg-color);
   color: var(--text-dark);
+
+  /* Improves font rendering on most browsers */
   -webkit-font-smoothing: antialiased;
-  /* Only hide X overflow here to prevent side-scrolling */
+
+  /* Prevents unwanted horizontal scrolling */
   overflow-x: hidden;
 }
 
-/* FIX: This must be visible for sticky elements to work */
+/* 
+  Root container must remain visible to allow:
+  - sticky headers
+  - proper scroll behaviour
+  - full-height layouts
+*/
 #root {
-  min-height: 100vh; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: visible; /* <<< CRITICAL ADDITION */
+  overflow: visible; /* Required for sticky elements */
 }
 
-/* Wrapper forces footer to bottom */
+/* 
+  App wrapper ensures footer stays at the bottom
+  even when page content is short
+*/
 .app-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  overflow: visible; /* <<< CRITICAL ADDITION */
+  overflow: visible; /* Prevents clipping issues */
 }
 
+/* 
+  Main content expands to fill available space
+  between header and footer
+*/
 .main-content-area {
   flex: 1;
   width: 100%;
-  overflow: visible; /* <<< CRITICAL ADDITION */
+  overflow: visible;
 }
 
-/* GLOBAL HEADINGS */
-h1 { font-weight: 700; color: var(--primary-color); letter-spacing: -0.5px; }
-h2 { font-weight: 600; color: var(--text-dark); }
-h3 { font-weight: 600; color: var(--text-dark); }
+/* ===============================
+   GLOBAL TYPOGRAPHY
+================================ */
+h1 {
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: -0.5px;
+}
 
-/* GLOBAL BUTTONS */
-button { cursor: pointer; transition: all 0.2s ease; font-family: var(--font-main); }
+h2 {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+h3 {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* ===============================
+   GLOBAL BUTTON STYLES
+================================ */
+button {
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: all 0.2s ease;
+}
