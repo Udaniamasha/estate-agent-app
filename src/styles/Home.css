@@ -1,31 +1,30 @@
-/* =========================================================
-   HERO SECTION
-   Big header banner with overlay text and search bar
-========================================================= */
-
+/* Hero banner with background image and overlay */
 .hero-section {
   position: relative;
-  /* Use the unsplash link or your local file */
   background-image: url('./images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
-  min-height: 600px; 
+  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
 }
 
-/* Overlay (dark gradient so white text is visible) */
+/* Dark overlay to improve text readability on image */
 .hero-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20,30,50,0.4), rgba(20,30,50,0.7));
+  background: linear-gradient(
+    180deg,
+    rgba(20,30,50,0.4),
+    rgba(20,30,50,0.7)
+  );
   z-index: 1;
 }
 
-/* Content inside hero (text + form) */
+/* Wrapper for hero text and search form */
 .hero-overlay {
   position: relative;
   z-index: 2;
@@ -38,7 +37,7 @@
   align-items: center;
 }
 
-/* Headline text */
+/* Main heading and subtitle */
 .hero-text-content {
   margin-bottom: 30px;
 }
@@ -54,7 +53,7 @@
 }
 
 .hero-highlight {
-  color: #26e9c3; /* Turquoise accent word */
+  color: #26e9c3;
 }
 
 .hero-text-content p {
@@ -65,15 +64,12 @@
   text-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-/* Search box area */
+/* Search form container inside hero */
 .search-container {
   width: 100%;
 }
 
-/* =========================================================
-   MAIN CONTENT AREA
-========================================================= */
-
+/* Layout for results and favourites section */
 .content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -83,7 +79,6 @@
   align-items: flex-start;
 }
 
-/* Results list */
 .results-column {
   flex: 3;
 }
@@ -94,10 +89,7 @@
   color: #262637;
 }
 
-/* =========================================================
-   PROPERTY CARDS (Grid Layout)
-========================================================= */
-
+/* Grid layout for property cards */
 .property-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -137,7 +129,7 @@
   margin: 5px 0;
 }
 
-/* Favourite heart button */
+/* Favourite toggle button on cards */
 .fav-btn {
   position: absolute;
   top: 10px;
@@ -156,10 +148,7 @@
   z-index: 10;
 }
 
-/* =========================================================
-   FAVOURITES SIDEBAR
-========================================================= */
-
+/* Sidebar holding saved favourite properties */
 .favorites-sidebar {
   flex: 1;
   min-width: 280px;
@@ -168,16 +157,15 @@
   border-radius: 8px;
   border: 1px solid #eee;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  
-  /* Sticky Logic */
-  position: -webkit-sticky;
+
+  /* Sticky behaviour so favourites remain visible while scrolling */
   position: sticky;
-  top: 100px; 
+  top: 100px;
   z-index: 10;
-  height: fit-content; /* Critical for sticky to work */
+  height: fit-content;
 }
 
-/* Clear all button */
+/* Button to clear all favourites */
 .clear-fav-btn {
   width: 100%;
   border: none;
@@ -193,7 +181,7 @@
   background: #c9174d;
 }
 
-/* Mini card inside favourites list */
+/* Compact favourite card inside sidebar */
 .fav-item-mini {
   display: flex;
   gap: 10px;
@@ -225,10 +213,7 @@
   color: red;
 }
 
-/* =========================================================
-   RESPONSIVENESS
-========================================================= */
-
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .hero-section {
     padding: 40px 10px;
@@ -249,7 +234,7 @@
 
   .favorites-sidebar {
     width: 100%;
-    order: -1; /* move sidebar on top for mobile */
+    order: -1;
     position: static;
   }
 }
