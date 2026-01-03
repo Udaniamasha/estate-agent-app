@@ -1,7 +1,6 @@
 /* Hero banner with background image and overlay */
 .hero-section {
   position: relative;
-  background-image: url('/estate-agent-app/images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   min-height: 600px;

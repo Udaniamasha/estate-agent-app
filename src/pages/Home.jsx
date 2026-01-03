@@ -5,6 +5,7 @@ import { useFavorites } from '../context/FavoritesContext';
 import SearchForm from '../components/SearchForm';
 import PropertyCard from '../components/PropertyCard';
 import '../styles/Home.css';
+import heroImage from '../assets/hero-bg.jpg';
 
 const Home = () => {
 
@@ -152,7 +153,7 @@ const Home = () => {
       <div className="home-page">
 
         {/* Hero section with search */}
-        <div className="hero-section">
+        <div className="hero-section" style={{ backgroundImage: `url(${heroImage})` }}>
           <div className="hero-overlay">
 
             <div className="hero-text-content">
@@ -273,7 +274,7 @@ const Home = () => {
                           </button>
 
                           {/* REMOVED THE LEADING SLASH */}
-<img src={fav.picture} alt="thumb" onError={(e) => e.target.src='https://via.placeholder.com/60'} />
+                          <img src={fav.picture} alt="thumb" onError={(e) => e.target.src = 'https://via.placeholder.com/60'} />
 
                           <div className="fav-info">
                             <h5 style={{ margin: 0 }}>{fav.location}</h5>
