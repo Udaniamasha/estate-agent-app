@@ -4,19 +4,25 @@ import Select from 'react-select';
 import "react-datepicker/dist/react-datepicker.css";
 import '../styles/SearchForm.css';
 
-const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch, clearFilters }) => {
-  const [activeTab, setActiveTab] = useState('buy'); // Changed default to 'buy' to match typical use
+const SearchForm = ({
+  filters,
+  handleInputChange,
+  handleDateChange,
+  handleSearch,
+  clearFilters
+}) => {
 
-  // --- OPTIONS DATA ---
+  /* Tracks which tab is active (UI only, does not affect filtering logic) */
+  const [activeTab, setActiveTab] = useState('buy');
 
-  // Property Types
+  /* Property type options */
   const typeOptions = [
     { value: 'any', label: 'Any' },
     { value: 'House', label: 'House' },
     { value: 'Flat', label: 'Flat' }
   ];
 
-  // Bedroom Options (0 = Studio)
+  /* Bedroom dropdown values */
   const bedOptions = [
     { value: 1, label: '1' },
     { value: 2, label: '2' },
@@ -25,7 +31,7 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
     { value: 5, label: '5+' }
   ];
 
-  // Price Options (Generate a list or hardcode common UK price points)
+  /* Common UK property price points */
   const priceOptions = [
     { value: 50000, label: '£50,000' },
     { value: 100000, label: '£100,000' },
@@ -44,17 +50,17 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
 
   return (
     <div className="rightmove-search-container">
-      
-      {/* TABS */}
+
+      {/* Buy / Rent tabs (visual only) */}
       <div className="search-tabs">
-        <button 
+        <button
           type="button"
           className={`tab-btn ${activeTab === 'buy' ? 'active' : ''}`}
           onClick={() => setActiveTab('buy')}
         >
           Buy
         </button>
-        <button 
+        <button
           type="button"
           className={`tab-btn ${activeTab === 'rent' ? 'active' : ''}`}
           onClick={() => setActiveTab('rent')}
@@ -63,30 +69,32 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
         </button>
       </div>
 
-      {/* FORM BODY */}
+      {/* Main search form */}
       <form onSubmit={handleSearch} className="rm-form-body">
-        
 
-        {/* TOP ROW: Postcode & Type */}
+        {/* Area and property type */}
         <div className="rm-row-main">
           <div className="rm-input-group big-input">
             <label>Search Area</label>
-            <input 
-              type="text" 
-              name="postcode" 
-              value={filters.postcode} 
-              onChange={handleInputChange} 
-              placeholder="e.g. NW1, BR1, Leeds" 
+            <input
+              type="text"
+              name="postcode"
+              value={filters.postcode}
+              onChange={handleInputChange}
+              placeholder="e.g. NW1, BR1, Leeds"
             />
           </div>
 
           <div className="rm-input-group">
             <label>Property Type</label>
-            <Select 
+            <Select
               options={typeOptions}
-              // Find the object that matches the current string value
               value={typeOptions.find(op => op.value === filters.type)}
-              onChange={(op) => handleInputChange({ target: { name: 'type', value: op.value } })}
+              onChange={(op) =>
+                handleInputChange({
+                  target: { name: 'type', value: op.value }
+                })
+              }
               className="rm-select-container"
               classNamePrefix="rm-select"
               placeholder="Any"
@@ -95,84 +103,120 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
           </div>
         </div>
 
-        {/* MIDDLE ROW: Prices & Beds (UPDATED TO DROPDOWNS) */}
+        {/* Prices, bedrooms and date filters */}
         <div className="rm-row-secondary">
-          
-          {/* Price Range */}
+
           <div className="rm-input-group">
             <label>Price Range (£)</label>
             <div className="split-inputs">
-              {/* MIN PRICE DROPDOWN */}
-              <Select 
+              <Select
                 options={priceOptions}
                 placeholder="No min"
                 className="rm-select-container"
                 classNamePrefix="rm-select"
-                onChange={(op) => handleInputChange({ target: { name: 'minPrice', value: op ? op.value : 0 } })}
-                value={priceOptions.find(op => op.value === filters.minPrice) || null}
+                onChange={(op) =>
+                  handleInputChange({
+                    target: {
+                      name: 'minPrice',
+                      value: op ? op.value : 0
+                    }
+                  })
+                }
+                value={
+                  priceOptions.find(op => op.value === filters.minPrice) || null
+                }
                 isClearable
               />
               <span className="dash">-</span>
-              {/* MAX PRICE DROPDOWN */}
-              <Select 
+              <Select
                 options={priceOptions}
                 placeholder="No max"
                 className="rm-select-container"
                 classNamePrefix="rm-select"
-                onChange={(op) => handleInputChange({ target: { name: 'maxPrice', value: op ? op.value : 10000000 } })}
-                value={priceOptions.find(op => op.value === filters.maxPrice) || null}
+                onChange={(op) =>
+                  handleInputChange({
+                    target: {
+                      name: 'maxPrice',
+                      value: op ? op.value : 10000000
+                    }
+                  })
+                }
+                value={
+                  priceOptions.find(op => op.value === filters.maxPrice) || null
+                }
                 isClearable
               />
             </div>
           </div>
 
-          {/* Bedrooms */}
           <div className="rm-input-group">
             <label>No. of Bedrooms</label>
             <div className="split-inputs">
-              {/* MIN BEDS DROPDOWN */}
-              <Select 
+              <Select
                 options={bedOptions}
                 placeholder="No min"
                 className="rm-select-container"
                 classNamePrefix="rm-select"
-                onChange={(op) => handleInputChange({ target: { name: 'minBedrooms', value: op ? op.value : 0 } })}
-                value={bedOptions.find(op => op.value === filters.minBedrooms) || null}
+                onChange={(op) =>
+                  handleInputChange({
+                    target: {
+                      name: 'minBedrooms',
+                      value: op ? op.value : 0
+                    }
+                  })
+                }
+                value={
+                  bedOptions.find(op => op.value === filters.minBedrooms) || null
+                }
                 isClearable
                 isSearchable={false}
               />
               <span className="dash">-</span>
-              {/* MAX BEDS DROPDOWN */}
-              <Select 
+              <Select
                 options={bedOptions}
                 placeholder="No max"
                 className="rm-select-container"
                 classNamePrefix="rm-select"
-                onChange={(op) => handleInputChange({ target: { name: 'maxBedrooms', value: op ? op.value : 10 } })}
-                value={bedOptions.find(op => op.value === filters.maxBedrooms) || null}
+                onChange={(op) =>
+                  handleInputChange({
+                    target: {
+                      name: 'maxBedrooms',
+                      value: op ? op.value : 10
+                    }
+                  })
+                }
+                value={
+                  bedOptions.find(op => op.value === filters.maxBedrooms) || null
+                }
                 isClearable
                 isSearchable={false}
               />
             </div>
           </div>
 
-          {/* Dates */}
           <div className="rm-input-group">
             <label>Added to site</label>
             <div className="split-inputs">
-              <DatePicker 
-                selected={filters.dateAdded} 
-                onChange={handleDateChange} 
-                placeholderText="From" 
-                className="rm-date-input" 
+              <DatePicker
+                selected={filters.dateAdded}
+                onChange={handleDateChange}
+                placeholderText="From"
+                className="rm-date-input"
                 dateFormat="dd/MM/yyyy"
                 isClearable
               />
               <span className="dash">-</span>
-              <DatePicker 
-                selected={filters.dateAddedMax} 
-                onChange={(date) => handleInputChange({ target: { name: 'dateAddedMax', value: date } })} 
-                placeholderText="To" 
+              <DatePicker
+                selected={filters.dateAddedMax}
+                onChange={(date) =>
+                  handleInputChange({
+                    target: {
+                      name: 'dateAddedMax',
+                      value: date
+                    }
+                  })
+                }
+                placeholderText="To"
                 className="rm-date-input"
                 dateFormat="dd/MM/yyyy"
                 isClearable
@@ -182,10 +226,14 @@ const SearchForm = ({ filters, handleInputChange, handleDateChange, handleSearch
 
         </div>
 
-        {/* ACTIONS */}
+        {/* Form actions */}
         <div className="rm-actions">
-          <button type="button" onClick={clearFilters} className="rm-clear-btn">
-             Reset Filters
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="rm-clear-btn"
+          >
+            Reset Filters
           </button>
           <button type="submit" className="rm-search-btn">
             Search Properties
