@@ -22,15 +22,8 @@ const PropertyCard = ({ property, isFavorite, onToggleFavorite, isDragging }) =>
       </button>
       
       {/* Main property image */}
-      {/* Fallback ensures the card still looks okay if an image fails to load */}
-      <img 
-        src={`/${property.picture}`} 
-        alt={property.type} 
-        onError={(e) => {
-          e.target.src = 'https://via.placeholder.com/250x150?text=No+Image';
-        }} 
-      />
-      
+      <img src={property.picture} alt={property.type} onError={(e) => { e.target.src = 'https://via.placeholder.com/250x150?text=No+Image' }} />
+
       {/* Card content area with text details */}
       <div className="card-content">
         <h4>{property.location}</h4>

@@ -40,11 +40,7 @@ const PropertyTabs = ({ description, floorPlanImg, location }) => {
 
             {/* If a floor plan image exists, show it; otherwise display a placeholder message */}
             {floorPlanImg && floorPlanImg.trim() !== '' ? (
-              <img
-                src={`/${floorPlanImg}`}
-                alt="Floor Plan"
-                style={{ width: '100%', marginTop: '10px' }}
-              />
+              <img src={floorPlanImg} alt="Floor Plan" style={{width: '100%', marginTop: '10px'}} />
             ) : (
               <div
                 style={{

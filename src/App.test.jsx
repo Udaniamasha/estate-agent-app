@@ -68,29 +68,30 @@ describe('Estate Agent App Tests', () => {
     expect(screen.getByText('Test House Location')).toBeInTheDocument();
   });
 
-  // Test 2: Search logic correctly filters properties
   test('2. Filters properties by Postcode (Search Logic)', async () => {
     renderHome();
-    
-    // Initially both mock properties should be visible
+
+    // Check initial state (Both visible)
     expect(screen.getByText('Test House Location')).toBeInTheDocument();
     expect(screen.getByText('Test Flat Location')).toBeInTheDocument();
-    
-    // Find the Postcode input and type a keyword (simulating user filter)
+
+    // Find the Postcode Input (Standard text input)
+    // In SearchForm.jsx: placeholder="e.g. NW1, BR1, Leeds"
     const postcodeInput = screen.getByPlaceholderText(/e.g. NW1/i);
+
+    // Type "Flat" to match the second property
     fireEvent.change(postcodeInput, { target: { value: 'Flat' } });
-    
-    // Click the search button
+
+    // Click Search
     const searchBtn = screen.getByText(/Search Properties/i);
     fireEvent.click(searchBtn);
 
-    // Wait for the UI to update after filtering
+    // House should disappear (location is "Test House Location")
+    // Flat should remain (location is "Test Flat Location")
     await waitFor(() => {
-      // The house should disappear
       expect(screen.queryByText('Test House Location')).not.toBeInTheDocument();
     });
 
-    // The flat should still be visible
     expect(screen.getByText('Test Flat Location')).toBeInTheDocument();
   });
 

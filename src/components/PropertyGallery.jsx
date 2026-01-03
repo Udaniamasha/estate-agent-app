@@ -27,15 +27,7 @@ const PropertyGallery = ({ images }) => {
     <div className="gallery-section">
       {/* Main large image */}
       <div className="main-image-container">
-        <img
-          src={`/${mainImage}`}
-          alt="Main View"
-          // Replace broken or missing image links with a neutral placeholder
-          onError={(e) => {
-            e.target.src =
-              'https://via.placeholder.com/800x400?text=Image+Not+Found';
-          }}
-        />
+        <img src={mainImage} alt="Main View" onError={(e) => { e.target.src = 'https://via.placeholder.com/800x400?text=Image+Not+Found' }} />
       </div>
 
       {/* Thumbnails row */}
@@ -43,7 +35,7 @@ const PropertyGallery = ({ images }) => {
         {images.map((img, index) => (
           <img
             key={index}
-            src={`/${img}`}
+            src={{img}}
             alt={`Thumbnail ${index + 1}`}
             // Clicking a thumbnail changes the main image
             onClick={() => setMainImage(img)}

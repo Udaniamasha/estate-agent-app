@@ -272,13 +272,8 @@ const Home = () => {
                             &times;
                           </button>
 
-                          <img
-                            src={`/${fav.picture}`}
-                            alt="thumb"
-                            onError={(e) =>
-                              e.target.src = 'https://via.placeholder.com/60'
-                            }
-                          />
+                          {/* REMOVED THE LEADING SLASH */}
+<img src={fav.picture} alt="thumb" onError={(e) => e.target.src='https://via.placeholder.com/60'} />
 
                           <div className="fav-info">
                             <h5 style={{ margin: 0 }}>{fav.location}</h5>
